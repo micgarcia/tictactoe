@@ -59,10 +59,14 @@ table {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   justify-items: center;
+
 }
 
 .square {
   padding-top: 1em;
-  width: 50%;
+  width: 100%;
   text-align: center;
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
 }
