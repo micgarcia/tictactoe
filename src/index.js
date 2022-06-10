@@ -1,7 +1,13 @@
 import './styles.css';
 
-// TODO: CREATE GAME WIN OR TIE LOGIC, CREATE RESET BUTTON
-//        THAT CLEARS THE BOARD, STYLE PAGE
+// TODO: STYLE PAGE
+
+// Function to import font
+const fontImport = function () {
+  var font = document.createElement('style');
+  font.innerHTML = "@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');";
+  document.head.appendChild(font);
+}
 
 // Module that creates the gameboard
 const gameBoard = (() => {
