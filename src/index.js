@@ -13,18 +13,12 @@ const gameBoard = (() => {
   };
 })();
 
+
 // Factory that creates players
 const playerFactory = (name, symbol, isTurn) => {
   return {name, symbol, isTurn};
 };
 
-// Module that displays players, turns, and symbols
-const displayController = (() => {
-  var players = ['Player 1', 'Player 2'];
-  return {
-    players
-  };
-})();
 
 // Function that renders the player controller
 const renderController = function() {
@@ -50,18 +44,110 @@ const renderController = function() {
 }
 renderController();
 
+
 // Creates the two players
 var player1 = playerFactory('Player 1', 'O', true);
 var player2 = playerFactory('Player 2', 'X', false);
 
+const initializePlayers = function () {
+  player1 = playerFactory('Player 1', 'O', true);
+  player2 = playerFactory('Player 2', 'X', false);
+}
+initializePlayers();
 
-const isVictory = function (outcome) {
-  if (outcome) {
-    console.log('Victory')
-  } else {
-    console.log('Tie');
+
+
+// Function determines if victory or tie has happened
+const isVictory = function () {
+  var results = [];
+  for (var i = 0; i < 9; i++) {
+    var letter = document.getElementById('square' + i);
+    results.push(letter.innerHTML);
+  }
+
+  if (results[0] !== '' && results[0] === results[1] && results[1] === results[2]) {
+    if (results[0] === 'O') {
+      declareEnd('Player One');
+    } else {
+      declareEnd('Player Two');
+    }
+  } else
+
+  if (results[3] !== '' && results[3] === results[4] && results[4] === results[5]) {
+    if (results[3] === 'O') {
+      declareEnd('Player One');
+    } else {
+      declareEnd('Player Two');
+    }
+  } else
+
+  if (results[6] !== '' && results[6] === results[7] && results[7] === results[8]) {
+    if (results[6] === 'O') {
+      declareEnd('Player One');
+    } else {
+      declareEnd('Player Two');
+    }
+  } else
+
+  if (results[0] !== '' && results[0] === results[3] && results[3] === results[6]) {
+    if (results[0] === 'O') {
+      declareEnd('Player One');
+    } else {
+      declareEnd('Player Two');
+    }
+  } else
+
+  if (results[1] !== '' && results[1] === results[4] && results[4] === results[7]) {
+    if (results[1] === 'O') {
+      declareEnd('Player One');
+    } else {
+      declareEnd('Player Two');
+    }
+  } else
+
+  if (results[2] !== '' && results[2] === results[5] && results[5] === results[8]) {
+    if (results[2] === 'O') {
+      declareEnd('Player One');
+    } else {
+      declareEnd('Player Two');
+    }
+  } else
+
+  if (results[0] !== '' && results[0] === results[4] && results[4] === results[8]) {
+    if (results[0] === 'O') {
+      declareEnd('Player One');
+    } else {
+      declareEnd('Player Two');
+    }
+  } else
+
+  if (results[2] !== '' && results[2] === results[4] && results[4] === results[6]) {
+    if (results[2] === 'O') {
+      declareEnd('Player One');
+    } else {
+      declareEnd('Player Two');
+    }
+  } else
+
+  if (!results.includes('')) {
+    declareEnd();
   }
 }
+
+
+// Function declares victory or tie on DOM
+const declareEnd = function (winner) {
+  var winnerMsg = document.createElement('div');
+  winnerMsg.setAttribute('id', 'winnerMsg');
+  if (winner === undefined) {
+    winnerMsg.innerHTML = 'Tie Game!';
+  } else {
+    winnerMsg.innerHTML = winner + ' Wins!';
+  }
+  content.appendChild(winnerMsg);
+  reset();
+}
+
 
 // Function that controls clicking logic
 const click = function() {
@@ -90,12 +176,14 @@ const click = function() {
     playerOne.style.color = 'black';
   }
 
-
+  isVictory();
 }
+
 
 // Function that renders the gameboard
 const renderBoard = function (board) {
   var content = document.getElementById('content');
+
 
   var grid = document.createElement('div');
   grid.setAttribute('id', 'grid');
@@ -119,6 +207,27 @@ const renderBoard = function (board) {
 
 renderBoard(gameBoard.board);
 
+const reset = function() {
+  var content = document.getElementById('content');
+
+  var resetBtn = document.createElement('button');
+  resetBtn.innerHTML = 'Reset Board';
+
+  content.appendChild(resetBtn);
+
+  resetBtn.onclick = function() {
+    var msg = document.getElementById('winnerMsg');
+    msg.remove();
+    resetBtn.remove();
+
+    for (var i = 0; i < 9; i++) {
+      var square = document.getElementById('square' + i);
+      square.innerHTML = '';
+    }
+
+
+  }
+}
 
 
 
