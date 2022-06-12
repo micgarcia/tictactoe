@@ -1,6 +1,5 @@
 import './styles.css';
 
-// TODO: STYLE PAGE
 
 // Function to import font
 const fontImport = function () {
@@ -38,7 +37,8 @@ const renderController = function() {
   player1.setAttribute('id', 'player1');
   player1.innerHTML = 'Player One (O)';
 
-  player1.style.color = 'green';
+  player1.style.color = '#57837B';
+  player1.style.fontWeight = 600;
 
   var player2 = document.createElement('div');
   player2.setAttribute('id', 'player2');
@@ -175,11 +175,15 @@ const click = function() {
 
   // Displays whose turn it is
   if (player1.isTurn) {
-    playerOne.style.color = 'green';
+    playerOne.style.color = '#57837B';
+    playerOne.style.fontWeight = 600;
     playerTwo.style.color = 'black';
+    playerTwo.style.fontWeight = 400;
   } else if (player2.isTurn) {
-    playerTwo.style.color = 'green';
+    playerTwo.style.color = '#57837B';
+    playerTwo.style.fontWeight = 600;
     playerOne.style.color = 'black';
+    playerOne.style.fontWeight = 400;
   }
 
   isVictory();
